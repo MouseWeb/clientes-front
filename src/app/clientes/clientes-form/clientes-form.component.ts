@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Cliente } from '../cliente';
 import { ClientesService } from '../../providers/clientes.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
  
 @Component({
   selector: 'app-clientes-form',
@@ -13,15 +13,29 @@ export class ClientesFormComponent implements OnInit {
   cliente: Cliente;
   success: boolean = false;
   errors: String[];
+  id: number;
 
   constructor( 
       private service: ClientesService,
-      private router: Router
+      private router: Router,
+      private activatedRoute : ActivatedRoute
       ) {
     this.cliente = new Cliente();
   }
 
   ngOnInit(): void {
+    let params = this.activatedRoute.params
+    params.subscribe( urlParams => {
+        this.id = urlParams['id'];
+        if(this.id){
+          this.service
+            .getClienteById(this.id)
+            .subscribe( 
+              response => this.cliente = response ,
+              errorResponse => this.cliente = new Cliente()
+            )
+        }
+    })
   }
 
   voltarParaListagem(){
