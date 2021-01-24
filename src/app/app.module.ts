@@ -9,14 +9,18 @@ import { TemplateModule } from './template/template.module';
 import { HomeComponent } from './home/home.component'
 import { ClientesModule } from './clientes/clientes.module';
 import { ClientesService } from './providers/clientes.service';
+import { LoginComponent } from './login/login.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     HttpClientModule,
     AppRoutingModule,
     TemplateModule,
