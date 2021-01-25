@@ -12,7 +12,7 @@ import { ClientesService } from './providers/clientes.service';
 import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import { LayoutComponent } from './layout/layout.component';
-import { AuthService } from './auth.service';
+import { AuthService } from './providers/auth.service';
 
 @NgModule({
   declarations: [
