@@ -23,6 +23,10 @@ export class AuthService {
     return this.http.post<any>(this.apiURL, usuario);
   }
 
+  isAuthenticated() : boolean {
+    return false;
+  }
+
   tentarLogar( username: string, password: string ) : Observable<any> {
     const params = new HttpParams()
                         .set('username', username)
