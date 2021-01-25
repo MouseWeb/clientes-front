@@ -34,6 +34,15 @@ export class AuthService {
     return false;
   }
 
+  getUsuarioAutenticado(){
+    const token = this.obterToken();
+    if(token){
+      const usuario = this.jwtHelper.decodeToken(token).user_name
+      return usuario;
+    }
+    return null;
+  }
+
   obterToken(){
     const tokenString = localStorage.getItem('access_token')
     if(tokenString){
@@ -55,6 +64,10 @@ export class AuthService {
     }
     
     return this.http.post( this.tokenURL, params.toString(), { headers });
+  }
+
+  encerrarSessao(){
+    localStorage.removeItem('access_token')
   }
 
 }
